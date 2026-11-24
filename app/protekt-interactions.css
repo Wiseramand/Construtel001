@@ -1,0 +1,776 @@
+.construtel-site .photo-reveal {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.construtel-site .photo-reveal > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 850ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .photo-reveal::after {
+  position: absolute;
+  inset: -20% auto -20% -28%;
+  z-index: 2;
+  width: 158%;
+  background: linear-gradient(110deg, #172838 8%, #38566f 52%, #f2b21b 100%);
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(125%) skewX(-18deg);
+  transition: transform 950ms cubic-bezier(.72, 0, .22, 1), opacity 180ms ease;
+}
+
+.construtel-site .photo-reveal[data-reveal-state='hidden']::after {
+  opacity: 1;
+  transform: translateX(0) skewX(-18deg);
+  transition-delay: 90ms;
+}
+
+.construtel-site .photo-reveal[data-reveal-state='visible']::after {
+  opacity: 0;
+  transform: translateX(125%) skewX(-18deg);
+  transition-delay: 0ms;
+}
+
+.construtel-site .about-main-reveal {
+  aspect-ratio: 1.15;
+  border-radius: 4px;
+}
+
+.construtel-site .about-main-reveal > .about-main-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: inherit;
+}
+
+.construtel-site .service-photo {
+  position: relative;
+}
+
+.construtel-site .experience-photo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.construtel-site .project-carousel {
+  width: 100%;
+}
+
+.construtel-site .carousel-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.construtel-site .carousel-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.construtel-site .carousel-track {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.construtel-site .carousel-slide {
+  min-width: 0;
+  flex: 0 0 calc((100% - 32px) / 3);
+  scroll-snap-align: start;
+}
+
+.construtel-site .project-photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  height: 100%;
+}
+
+.construtel-site .project-photo > img {
+  object-position: center;
+}
+
+.construtel-site .carousel-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.construtel-site .carousel-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.construtel-site .carousel-pagination button,
+.construtel-site .carousel-arrow,
+.construtel-site .carousel-autoplay {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #d9e1e6;
+  background: #fff;
+  color: var(--navy);
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.construtel-site .carousel-pagination button {
+  position: relative;
+  width: 29px;
+  height: 42px;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+}
+
+.construtel-site .carousel-pagination button::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 44%);
+  content: '';
+  transition: width 180ms ease, background-color 180ms ease;
+}
+
+.construtel-site .carousel-pagination button.is-active::before {
+  width: 22px;
+  background: var(--amber);
+}
+
+.construtel-site .carousel-arrow,
+.construtel-site .carousel-autoplay {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-color: rgb(255 255 255 / 28%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 7%);
+  color: #fff;
+}
+
+.construtel-site .carousel-arrow:hover,
+.construtel-site .carousel-autoplay:hover {
+  border-color: var(--amber);
+  background: var(--amber);
+  color: var(--navy);
+}
+
+.construtel-site .carousel-arrow:active,
+.construtel-site .carousel-autoplay:active {
+  transform: scale(.94);
+}
+
+.construtel-site .carousel-pagination button:focus-visible,
+.construtel-site .carousel-arrow:focus-visible,
+.construtel-site .carousel-autoplay:focus-visible,
+.construtel-site .intro-video-play:focus-visible,
+.construtel-site .video-dialog-close:focus-visible {
+  outline: 3px solid #f4bd40;
+  outline-offset: 3px;
+}
+
+.construtel-site .carousel-autoplay {
+  position: absolute;
+  right: 0;
+}
+
+.construtel-site .intro-video-photo {
+  border-radius: 3px;
+}
+
+.construtel-site .intro-video-photo > img {
+  object-position: center 44%;
+}
+
+@media (max-width: 850px) {
+  .construtel-site .about-main-reveal {
+    aspect-ratio: 1.12;
+  }
+
+  .construtel-site .carousel-slide {
+    flex-basis: calc((100% - 16px) / 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .construtel-site .about-main-reveal {
+    aspect-ratio: .98;
+  }
+
+  .construtel-site .carousel-slide {
+    flex-basis: 100%;
+  }
+
+  .construtel-site .carousel-controls {
+    margin-top: 18px;
+  }
+
+  .construtel-site .carousel-autoplay {
+    position: static;
+    margin-left: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construtel-site .photo-reveal::after {
+    display: none;
+  }
+}
+
+.construtel-site .brand {
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.construtel-site .brand-mark {
+  display: block;
+  width: 52px;
+  height: 48px;
+  flex: 0 0 auto;
+  background: transparent;
+}
+
+.construtel-site .brand .brand-mark img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.construtel-site .brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1;
+}
+
+.construtel-site .brand-copy strong {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: .11em;
+}
+
+.construtel-site .brand-copy small {
+  color: rgb(255 255 255 / 74%);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.construtel-site .contact-trigger {
+  appearance: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.construtel-site .contact-trigger.text-link,
+.construtel-site .contact-trigger.services-contact-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+}
+
+.construtel-site .project-caption > .project-contact-trigger {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 55%);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.construtel-site .project-caption > .project-contact-trigger:hover {
+  transform: translateY(-2px);
+  border-color: var(--amber);
+  background: var(--amber);
+  color: var(--navy);
+}
+
+.construtel-site .partner-list li {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color 300ms ease, border-color 300ms ease, box-shadow 420ms ease, transform 420ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .partner-list li::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: var(--amber);
+  content: '';
+  transform: translateY(102%);
+  transition: transform 460ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .service-card,
+.construtel-site .project-card,
+.construtel-site .contact-card,
+.construtel-site .next-steps-card {
+  transition: transform 520ms cubic-bezier(.2, .7, .2, 1), box-shadow 520ms cubic-bezier(.2, .7, .2, 1), border-color 300ms ease;
+}
+
+.construtel-site .service-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.construtel-site .service-card::before {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), #ffe08a);
+  content: '';
+  pointer-events: none;
+  transition: width 560ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .service-card::after {
+  position: absolute;
+  z-index: 3;
+  inset: 9px;
+  border: 1px solid rgb(242 178 27 / 42%);
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.985);
+  transition: opacity 300ms ease, transform 520ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .service-card-icon {
+  position: relative;
+  transition: transform 520ms cubic-bezier(.2, .7, .2, 1), box-shadow 420ms ease;
+}
+
+.construtel-site .service-card-icon::after {
+  position: absolute;
+  inset: -5px;
+  border: 1px solid rgb(184 132 13 / 58%);
+  border-radius: inherit;
+  content: '';
+  opacity: 0;
+  transform: scale(.72) rotate(-35deg);
+  transition: opacity 300ms ease, transform 560ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .service-card h3,
+.construtel-site .service-card li > span {
+  transition: transform 420ms cubic-bezier(.2, .7, .2, 1), color 300ms ease, background-color 300ms ease;
+}
+
+.construtel-site .project-card {
+  isolation: isolate;
+}
+
+.construtel-site .project-card::before {
+  position: absolute;
+  z-index: 2;
+  inset: 13px;
+  border: 1px solid rgb(255 207 83 / 75%);
+  content: '';
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.97);
+  transition: opacity 350ms ease, transform 620ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .project-number {
+  transition: background-color 320ms ease, border-color 320ms ease, color 320ms ease, transform 520ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .project-caption {
+  transition: transform 520ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .project-contact-trigger {
+  transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease, transform 520ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.construtel-site .partner-list li:hover {
+  border-color: var(--amber);
+  color: var(--navy);
+}
+
+.construtel-site .partner-list li:hover::before {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .construtel-site .partner-list li:hover {
+    box-shadow: 0 12px 26px rgb(0 0 0 / 22%);
+    transform: translateY(-4px);
+  }
+
+  .construtel-site .service-card:hover,
+  .construtel-site .service-card:focus-within,
+  .construtel-site .project-card:hover,
+  .construtel-site .project-card:focus-within,
+  .construtel-site .contact-card:hover,
+  .construtel-site .next-steps-card:hover {
+    border-color: var(--amber);
+    box-shadow: 0 22px 50px rgb(11 28 41 / 18%);
+    transform: translateY(-8px);
+  }
+
+  .construtel-site .service-card:hover::before,
+  .construtel-site .service-card:focus-within::before {
+    width: 100%;
+  }
+
+  .construtel-site .service-card:hover::after,
+  .construtel-site .service-card:focus-within::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .construtel-site .service-card:hover .service-card-icon,
+  .construtel-site .service-card:focus-within .service-card-icon {
+    box-shadow: 0 8px 20px rgb(184 132 13 / 20%);
+    transform: rotate(8deg) scale(1.08);
+  }
+
+  .construtel-site .service-card:hover .service-card-icon::after,
+  .construtel-site .service-card:focus-within .service-card-icon::after {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+
+  .construtel-site .service-card:hover h3,
+  .construtel-site .service-card:focus-within h3 {
+    transform: translateX(4px);
+  }
+
+  .construtel-site .service-card:hover li > span,
+  .construtel-site .service-card:focus-within li > span {
+    background: var(--amber);
+    transform: scale(1.45);
+  }
+
+  .construtel-site .project-card:hover::before,
+  .construtel-site .project-card:focus-within::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .construtel-site .project-card:hover .project-number,
+  .construtel-site .project-card:focus-within .project-number {
+    transform: translateY(3px);
+    border-color: var(--amber);
+    background: var(--amber);
+    color: var(--navy);
+  }
+
+  .construtel-site .project-card:hover .project-caption,
+  .construtel-site .project-card:focus-within .project-caption {
+    transform: translateY(-5px);
+  }
+
+  .construtel-site .project-card:hover .project-contact-trigger,
+  .construtel-site .project-card:focus-within .project-contact-trigger {
+    transform: rotate(45deg) scale(1.08);
+  }
+}
+
+.contact-dialog {
+  width: min(640px, calc(100vw - 32px));
+  max-width: 640px;
+  max-height: calc(100svh - 32px);
+  margin: auto;
+  overflow: auto;
+  border: 1px solid rgb(27 44 59 / 12%);
+  border-radius: 16px;
+  padding: 0;
+  background: #fff;
+  color: var(--navy);
+  box-shadow: 0 28px 90px rgb(8 19 28 / 36%);
+  animation: contact-dialog-in 260ms cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.contact-dialog::backdrop {
+  background: rgb(8 19 28 / 72%);
+  backdrop-filter: blur(5px);
+  animation: contact-backdrop-in 220ms ease-out both;
+}
+
+.contact-dialog-panel {
+  position: relative;
+  padding: clamp(25px, 5vw, 42px);
+}
+
+.contact-dialog-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #dbe2e6;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--navy);
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.contact-dialog-close:hover {
+  transform: rotate(90deg);
+  border-color: var(--amber);
+  background: #fff8e5;
+}
+
+.contact-dialog .eyebrow {
+  margin: 0 0 12px;
+  color: #806013;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.contact-dialog-title {
+  max-width: 490px;
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--font-display);
+  font-size: clamp(30px, 5vw, 43px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: 1.08;
+}
+
+.contact-dialog-description {
+  max-width: 510px;
+  margin: 13px 0 25px;
+  color: #5c6c78;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.contact-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+  color: #283d4b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.contact-field-label {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.contact-field-label .contact-required {
+  color: #9a6b00;
+}
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+  width: 100%;
+  min-height: 46px;
+  border: 1px solid #d8e0e4;
+  border-radius: 5px;
+  padding: 11px 12px;
+  background: #f9fafb;
+  color: var(--navy);
+  font: 500 13px/1.5 var(--font-sans);
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.contact-field textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.contact-field input::placeholder,
+.contact-field textarea::placeholder {
+  color: #85939c;
+}
+
+.contact-field input:focus,
+.contact-field select:focus,
+.contact-field textarea:focus {
+  border-color: #b8840d;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(242 178 27 / 20%);
+}
+
+.contact-field-full {
+  grid-column: 1 / -1;
+}
+
+.contact-optional {
+  color: #788792;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.contact-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.contact-form-footer > p {
+  max-width: 310px;
+  margin: 0;
+  color: #71808b;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.contact-submit {
+  min-height: 46px;
+  flex: 0 0 auto;
+  border: 0;
+}
+
+.contact-submit-status {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  border: 1px solid #ead48f;
+  border-radius: 6px;
+  padding: 13px 14px;
+  background: #fff9e9;
+  color: #705208;
+}
+
+.contact-submit-status > svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.contact-submit-status p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.contact-submit-status a {
+  color: #594000;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@keyframes contact-dialog-in {
+  from { opacity: 0; transform: translateY(12px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes contact-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 1100px) {
+  .construtel-site .brand-mark { width: 50px; height: 44px; }
+  .construtel-site .brand-copy strong { font-size: 14px; }
+  .construtel-site .brand-copy small { font-size: 10px; }
+}
+
+@media (max-width: 850px) {
+  .construtel-site .brand-mark { width: 46px; height: 42px; }
+  .construtel-site .brand-copy strong { font-size: 14px; }
+}
+
+@media (max-width: 560px) {
+  .contact-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100svh - 20px);
+    border-radius: 12px;
+  }
+
+  .contact-dialog-panel { padding: 25px 20px; }
+  .contact-dialog-close { top: 17px; right: 17px; }
+  .contact-dialog-title { max-width: 360px; padding-right: 28px; }
+  .contact-form-grid { grid-template-columns: 1fr; gap: 14px; }
+  .contact-field-full { grid-column: auto; }
+  .contact-form-footer { align-items: stretch; flex-direction: column; }
+  .contact-form-footer > p { max-width: none; }
+  .contact-submit { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .construtel-site .partner-list li,
+  .construtel-site .partner-list li::before,
+  .construtel-site .service-card,
+  .construtel-site .service-card::before,
+  .construtel-site .service-card::after,
+  .construtel-site .service-card-icon,
+  .construtel-site .service-card-icon::after,
+  .construtel-site .service-card h3,
+  .construtel-site .service-card li > span,
+  .construtel-site .project-card,
+  .construtel-site .project-card::before,
+  .construtel-site .project-number,
+  .construtel-site .project-caption,
+  .construtel-site .project-contact-trigger,
+  .construtel-site .contact-card,
+  .construtel-site .next-steps-card,
+  .contact-dialog,
+  .contact-dialog::backdrop,
+  .contact-dialog-close,
+  .contact-field input,
+  .contact-field select,
+  .contact-field textarea {
+    animation: none;
+    scroll-behavior: auto;
+    transition: none;
+  }
+
+  .construtel-site .partner-list li:hover,
+  .construtel-site .service-card:hover,
+  .construtel-site .service-card:focus-within,
+  .construtel-site .project-card:hover,
+  .construtel-site .project-card:focus-within,
+  .construtel-site .contact-card:hover,
+  .construtel-site .next-steps-card:hover {
+    transform: none;
+  }
+}
