@@ -1,9 +1,8 @@
 'use client'
 
-import { createContext, useCallback, useContext, useRef, useState, type ButtonHTMLAttributes, type FormEvent, type ReactNode } from 'react'
+import { createContext, useCallback, useContext, useEffect, useRef, useState, type ButtonHTMLAttributes, type FormEvent, type ReactNode } from 'react'
 import { ArrowUpRight, CheckCircle2, X } from 'lucide-react'
 
-const contactAddress = 'geral@construtel.co.ao'
 const contactServices = [
   'Produtos',
   'Desenho & engenharia',
@@ -25,40 +24,43 @@ type ContactModalProviderProps = {
 
 export function ContactModalProvider({ children }: ContactModalProviderProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
+  const submissionTimeoutRef = useRef<number | null>(null)
   const [selectedService, setSelectedService] = useState('')
-  const [mailtoHref, setMailtoHref] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [reference, setReference] = useState('')
 
   const openContact = useCallback((service?: string) => {
+    if (submissionTimeoutRef.current !== null) window.clearTimeout(submissionTimeoutRef.current)
+    submissionTimeoutRef.current = null
+    formRef.current?.reset()
     setSelectedService(contactServices.includes(service ?? '') ? service ?? '' : '')
-    setMailtoHref('')
-    setSubmitted(false)
+    setIsSubmitting(false)
+    setReference('')
     if (!dialogRef.current?.open) dialogRef.current?.showModal()
+  }, [])
+
+  useEffect(() => () => {
+    if (submissionTimeoutRef.current !== null) window.clearTimeout(submissionTimeoutRef.current)
   }, [])
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const name = String(formData.get('name') ?? '').trim()
-    const email = String(formData.get('email') ?? '').trim()
-    const phone = String(formData.get('phone') ?? '').trim()
-    const service = String(formData.get('service') ?? '').trim()
-    const message = String(formData.get('message') ?? '').trim()
-    const subject = `Pedido de contacto — ${service}`
-    const body = [
-      `Nome: ${name}`,
-      `E-mail: ${email}`,
-      `Telefone: ${phone || 'Não indicado'}`,
-      `Serviço: ${service}`,
-      '',
-      'Mensagem:',
-      message,
-    ].join('\n')
-    const nextMailtoHref = `mailto:${contactAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    if (isSubmitting) return
 
-    setMailtoHref(nextMailtoHref)
-    setSubmitted(true)
-    window.location.href = nextMailtoHref
+    const form = event.currentTarget
+    setIsSubmitting(true)
+    setReference('')
+    submissionTimeoutRef.current = window.setTimeout(() => {
+      const date = new Date().toISOString().slice(0, 10).replaceAll('-', '')
+      const suffix = window.crypto.randomUUID().slice(0, 8).toUpperCase()
+
+      form.reset()
+      setSelectedService('')
+      setReference(`CT-DEMO-${date}-${suffix}`)
+      setIsSubmitting(false)
+      submissionTimeoutRef.current = null
+    }, 750)
   }
 
   return (
@@ -71,6 +73,14 @@ export function ContactModalProvider({ children }: ContactModalProviderProps) {
         ref={dialogRef}
         onClick={(event) => {
           if (event.target === event.currentTarget) event.currentTarget.close()
+        }}
+        onClose={() => {
+          if (submissionTimeoutRef.current !== null) window.clearTimeout(submissionTimeoutRef.current)
+          submissionTimeoutRef.current = null
+          formRef.current?.reset()
+          setSelectedService('')
+          setIsSubmitting(false)
+          setReference('')
         }}
       >
         <div className="contact-dialog-panel">
@@ -85,10 +95,10 @@ export function ContactModalProvider({ children }: ContactModalProviderProps) {
           <p className="eyebrow"><span className="eyebrow-dot" /> Novo pedido</p>
           <h2 className="contact-dialog-title" id="contact-dialog-title">Vamos falar sobre o seu projecto.</h2>
           <p className="contact-dialog-description" id="contact-dialog-description">
-            Conte-nos o que precisa. A sua mensagem será preparada no aplicativo de e-mail para envio a {contactAddress}.
+            Preencha os campos para experimentar o formulário. Esta é uma demonstração: os dados não são enviados nem guardados.
           </p>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form" onSubmit={handleSubmit} ref={formRef}>
             <div className="contact-form-grid">
               <label className="contact-field">
                 <span className="contact-field-label">Nome completo <span className="contact-required" aria-hidden="true">*</span></span>
@@ -116,17 +126,24 @@ export function ContactModalProvider({ children }: ContactModalProviderProps) {
             </div>
 
             <div className="contact-form-footer">
-              <p>Os dados não ficam guardados neste site. O envio é concluído no seu aplicativo de e-mail.</p>
-              <button className="button button-primary contact-submit" type="submit">
-                Preparar pedido <ArrowUpRight aria-hidden="true" size={17} />
+              <p>Demonstração: os dados não são enviados por e-mail nem guardados.</p>
+              <button aria-busy={isSubmitting} className="button button-primary contact-submit" disabled={isSubmitting} type="submit">
+                {isSubmitting ? <><span aria-hidden="true" className="contact-spinner" /> A processar…</> : <>Enviar pedido <ArrowUpRight aria-hidden="true" size={17} /></>}
               </button>
             </div>
           </form>
 
-          {submitted && (
-            <div className="contact-submit-status" role="status">
+          {isSubmitting && (
+            <div aria-live="polite" className="contact-submit-status contact-processing-status" role="status">
+              <span aria-hidden="true" className="contact-spinner" />
+              <p>A registar pedido de demonstração…</p>
+            </div>
+          )}
+
+          {reference && (
+            <div aria-live="polite" className="contact-submit-status" role="status">
               <CheckCircle2 aria-hidden="true" size={20} />
-              <p>A mensagem foi preparada. Confirme o envio na aplicação de e-mail que abrir. Se não abrir, <a href={mailtoHref}>clique aqui para abrir o pedido.</a></p>
+              <p>Pedido recebido com sucesso! Obrigado pelo seu contacto. A solicitação foi registada para efeitos de demonstração.<strong>Referência de demonstração: {reference}</strong></p>
             </div>
           )}
         </div>

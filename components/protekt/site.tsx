@@ -4,11 +4,13 @@ import { AboutSection, ServicesSection, WhyProtektSection } from './intro-sectio
 import { ContactCta, Footer } from './editorial'
 import { ProjectsSection } from './solution-sections'
 import { ContactModalProvider } from './contact-modal'
+import { SiteMotion } from './site-motion'
+import { SupportChat } from './support-chat'
 
 export function ConstrutelSite() {
   return (
     <ContactModalProvider>
-      <div className="construtel-site">
+      <SiteMotion>
         <Hero />
         <main>
           <AboutSection />
@@ -19,7 +21,8 @@ export function ConstrutelSite() {
           <ContactCta />
         </main>
         <Footer />
-      </div>
+      </SiteMotion>
+      <SupportChat />
     </ContactModalProvider>
   )
 }

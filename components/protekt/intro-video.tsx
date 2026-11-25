@@ -26,7 +26,7 @@ export function IntroVideoSection() {
             <img src="/protekt/construtel-hero.webp" alt="" loading="lazy" />
           </PhotoReveal>
           <div className="intro-video-shade" aria-hidden="true" />
-          <div className="intro-video-content">
+          <div className="intro-video-content" data-gsap-reveal="true">
             <p className="eyebrow"><span className="eyebrow-dot" /> Do terreno à operação</p>
             <h2 id="intro-video-title">Infraestruturas construídas à medida de cada desafio.</h2>
             <p>Um olhar sobre as equipas, a engenharia e as soluções que mantêm Angola ligada.</p>

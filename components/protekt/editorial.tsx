@@ -11,13 +11,13 @@ export function ContactCta() {
   return (
     <section className="contact-section section-space" id="contact">
       <div className="shell">
-        <div className="contact-heading">
-          <div><p className="eyebrow"><span className="eyebrow-dot" /> Fale connosco</p><h2 id="contact-title">Vamos desenhar a infraestrutura certa para o seu projecto.</h2></div>
-          <ContactTrigger className="button button-primary">Solicitar contacto <ArrowUpRight aria-hidden="true" size={17} /></ContactTrigger>
+        <div className="contact-heading" data-gsap-stagger="true">
+          <div data-gsap-item="true"><p className="eyebrow"><span className="eyebrow-dot" /> Fale connosco</p><h2 id="contact-title">Vamos desenhar a infraestrutura certa para o seu projecto.</h2></div>
+          <ContactTrigger className="button button-primary" data-gsap-item="true">Solicitar contacto <ArrowUpRight aria-hidden="true" size={17} /></ContactTrigger>
         </div>
 
-        <div className="contact-grid" aria-labelledby="contact-title">
-          <div className="contact-card">
+        <div className="contact-grid" aria-labelledby="contact-title" data-gsap-stagger="true">
+          <div className="contact-card" data-gsap-item="true">
             <p className="contact-card-label">Construtel Serviços, Limitada</p>
             <div className="contact-item"><MapPin aria-hidden="true" size={20} /><div><strong>Morada</strong><address>Edifício da Unta, Coqueiro<br />Rua Rainha Gingas<br />Luanda, República de Angola</address></div></div>
             <div className="contact-item"><Phone aria-hidden="true" size={20} /><div><strong>Telefone</strong><a href="tel:+244923690124">+244 923 690 124</a><a href="tel:+244946608395">+244 946 608 395</a></div></div>
@@ -26,7 +26,7 @@ export function ContactCta() {
             <p className="contact-tax">NIF: 5417042986</p>
           </div>
 
-          <div className="next-steps-card">
+          <div className="next-steps-card" data-gsap-item="true">
             <p className="eyebrow"><span className="eyebrow-dot" /> Próximos passos</p>
             <h3>Começamos por compreender o que precisa.</h3>
             <ol>

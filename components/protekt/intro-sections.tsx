@@ -45,12 +45,12 @@ export function AboutSection() {
   return (
     <section className="about-section section-space" id="about">
       <div className="shell">
-        <div className="about-heading">
-          <div>
+        <div className="about-heading" data-gsap-stagger="true">
+          <div data-gsap-item="true">
             <p className="eyebrow"><span className="eyebrow-dot" /> Quem somos</p>
-            <h2>Um parceiro angolano, do projecto à operação.</h2>
+            <h2>Um parceiro angolano, de projecto à operação.</h2>
           </div>
-          <span className="about-location"><BadgeCheck aria-hidden="true" size={19} /> Luanda, Angola</span>
+          <span className="about-location" data-gsap-item="true"><BadgeCheck aria-hidden="true" size={19} /> Luanda, Angola</span>
         </div>
 
         <div className="about-grid">
@@ -63,7 +63,7 @@ export function AboutSection() {
               <span><strong>Construtel Serviços, Limitada</strong><small>Infraestruturas de telecomunicações</small></span>
             </div>
           </div>
-          <div className="about-copy">
+          <div className="about-copy" data-gsap-reveal="true">
             <p className="eyebrow"><span className="eyebrow-dot" /> Engenharia com visão integrada</p>
             <h3>Tecnologia, engenharia e implementação num só parceiro.</h3>
             <p className="body-copy">
@@ -76,10 +76,10 @@ export function AboutSection() {
           </div>
         </div>
 
-        <div className="about-metrics" aria-label="Construtel em resumo">
-          <article className="metric-card"><strong>4</strong><span>parceiros certificados pela UNITEL, SA</span></article>
-          <article className="metric-card"><strong>10+</strong><span>marcas internacionais de referência entre os clientes</span></article>
-          <article className="metric-card"><strong>360°</strong><span>ciclo completo: produto, engenharia e implementação</span></article>
+        <div className="about-metrics" aria-label="Construtel em resumo" data-gsap-stagger="true">
+          <article className="metric-card" data-gsap-item="true"><strong>4</strong><span>parceiros certificados pela UNITEL, SA</span></article>
+          <article className="metric-card" data-gsap-item="true"><strong>10+</strong><span>marcas internacionais de referência entre os clientes</span></article>
+          <article className="metric-card" data-gsap-item="true"><strong>360°</strong><span>ciclo completo: produto, engenharia e implementação</span></article>
         </div>
       </div>
     </section>
@@ -90,14 +90,14 @@ export function ServicesSection() {
   return (
     <section className="services-section section-space" id="services">
       <div className="shell">
-        <div className="section-heading section-heading-centered">
+        <div className="section-heading section-heading-centered" data-gsap-reveal="true">
           <p className="eyebrow"><span className="eyebrow-dot" /> O que fazemos</p>
           <h2>Uma oferta integrada para todo o ciclo da infraestrutura.</h2>
           <p className="body-copy">Produtos, engenharia e implementação que se complementam — do desenho ao comissionamento.</p>
         </div>
-        <div className="service-grid">
+        <div className="service-grid" data-gsap-stagger="true">
           {services.map(({ category, title, description, image, imageAlt, icon: Icon, items }) => (
-            <article className="service-card" key={title}>
+            <article className="service-card" data-gsap-item="true" key={title}>
               <PhotoReveal className="service-photo">
                 <img src={image} alt={imageAlt} loading="lazy" />
               </PhotoReveal>
@@ -118,14 +118,14 @@ export function ServicesSection() {
   )
 }
 
-const partners = ['MOVICEL', 'ALCATEL-LUCENT', 'MULTITEL', 'ACS', 'STARTEL', 'NOVABASE', 'ALVARION', 'CERAGON', 'TELRAD', 'ERICSSON']
+const partners = ['MOVICEL', 'ALCATEL-LUCENT', 'MULTITEL', 'ACS', 'STARTEL', 'AFRICELL', 'ANGOLA TELECOM', 'CERAGON', 'TELRAD', 'ERICSSON']
 
 export function WhyProtektSection() {
   return (
     <section className="experience-section section-space" id="experience">
       <div className="shell">
         <div className="experience-grid">
-          <div className="experience-copy">
+          <div className="experience-copy" data-gsap-reveal="true">
             <p className="eyebrow"><span className="eyebrow-dot" /> Experiência & parceiros</p>
             <h2>Experiência no terreno. Parcerias que ampliam possibilidades.</h2>
             <p className="experience-description">
@@ -144,9 +144,9 @@ export function WhyProtektSection() {
           </div>
         </div>
         <div className="partner-panel">
-          <div className="partner-panel-heading"><span>Clientes & parceiros</span><span>Marcas de referência no sector</span></div>
-          <ul className="partner-list" aria-label="Clientes e parceiros da Construtel">
-            {partners.map((partner) => <li key={partner}>{partner}</li>)}
+          <div className="partner-panel-heading" data-gsap-reveal="true"><span>Clientes & parceiros</span><span>Marcas de referência no sector</span></div>
+          <ul className="partner-list" aria-label="Clientes e parceiros da Construtel" data-gsap-stagger="true">
+            {partners.map((partner) => <li data-gsap-item="true" key={partner}>{partner}</li>)}
           </ul>
         </div>
       </div>

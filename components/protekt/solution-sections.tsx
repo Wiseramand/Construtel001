@@ -38,15 +38,15 @@ export function ProjectsSection() {
   return (
     <section className="projects-section section-space" id="projects">
       <div className="shell">
-        <div className="section-heading section-heading-split section-heading-light">
-          <div><p className="eyebrow"><span className="eyebrow-dot" /> Portfólio de projectos</p><h2>Infraestruturas preparadas para ligar pessoas e negócios.</h2></div>
-          <p className="projects-intro">Soluções dimensionadas ao terreno, ao prazo e aos requisitos de cada cliente.</p>
+        <div className="section-heading section-heading-split section-heading-light" data-gsap-stagger="true">
+          <div data-gsap-item="true"><p className="eyebrow"><span className="eyebrow-dot" /> Portfólio de projectos</p><h2>Infraestruturas preparadas para ligar pessoas e negócios.</h2></div>
+          <p className="projects-intro" data-gsap-item="true">Soluções dimensionadas ao terreno, ao prazo e aos requisitos de cada cliente.</p>
         </div>
         <Carousel
           className="project-carousel"
           label="Áreas do portfólio de projectos"
           items={projects.map((project, index) => (
-            <article className="project-card" key={project.title}>
+            <article className="project-card" data-gsap-item="true" key={project.title}>
               <PhotoReveal className="project-photo">
                 <img src={project.image} alt={project.alt} loading="lazy" />
               </PhotoReveal>

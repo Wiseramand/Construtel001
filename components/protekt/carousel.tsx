@@ -109,6 +109,7 @@ export function Carousel({ items, label, className = '' }: CarouselProps) {
   return (
     <div
       className={`carousel ${className}`.trim()}
+      data-gsap-stagger="true"
       role="region"
       aria-roledescription="carousel"
       aria-label={label}
