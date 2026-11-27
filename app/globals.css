@@ -118,6 +118,18 @@ img { display: block; max-width: 100%; }
 .about-copy h3 { max-width: 610px; margin: 0 0 16px; color: var(--navy); font-family: var(--font-display); font-size: clamp(31px, 3.1vw, 43px); font-weight: 400; letter-spacing: -.02em; line-height: 1.16; }
 .about-copy > .body-copy { max-width: 600px; margin: 0 0 13px; }
 .about-secondary-copy { margin-bottom: 22px !important; }
+.purpose-grid { display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); gap: 16px; margin-top: 64px; }
+.purpose-card { min-width: 0; padding: 32px 34px; border: 1px solid var(--border); background: #f4f6f7; }
+.purpose-card-mission { border-color: var(--navy-deep); background: var(--navy-deep); color: #fff; }
+.purpose-card-label { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 27px; color: #657987; font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.purpose-card-label svg { flex: 0 0 auto; color: var(--coral); }
+.purpose-card-mission .purpose-card-label { color: rgb(255 255 255 / 65%); }
+.purpose-card-mission .purpose-card-label svg { color: var(--amber); }
+.purpose-card h3 { margin: 0 0 14px; color: var(--navy); font-family: var(--font-display); font-size: 34px; font-weight: 400; letter-spacing: -.02em; line-height: 1.12; }
+.purpose-card-mission h3 { color: #fff; }
+.purpose-card p { margin: 0; color: #596b79; font-size: 13px; line-height: 1.85; }
+.purpose-card p + p { margin-top: 12px; }
+.purpose-card-mission p { color: rgb(255 255 255 / 77%); }
 .about-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 57px; padding-top: 25px; border-top: 1px solid var(--border); }
 .metric-card { display: flex; align-items: center; gap: 15px; padding: 7px 0; }
 .metric-card strong { color: var(--blue); font-family: var(--font-display); font-size: 36px; font-weight: 400; letter-spacing: -.04em; }
@@ -182,11 +194,12 @@ img { display: block; max-width: 100%; }
 .intro-video-link svg { color: var(--amber); }
 .intro-video-play { position: absolute; z-index: 2; top: 50%; right: clamp(28px, 8vw, 100px); display: grid; width: 76px; height: 76px; place-items: center; padding: 0; border: 1px solid rgb(255 255 255 / 72%); border-radius: 50%; background: rgb(255 255 255 / 12%); color: #fff; cursor: pointer; transform: translateY(-50%); transition: background-color 180ms ease, transform 180ms ease; backdrop-filter: blur(8px); }
 .intro-video-play:hover { background: var(--amber); color: var(--navy); transform: translateY(-50%) scale(1.07); }
-.video-dialog { width: min(92vw, 1000px); max-width: 1000px; padding: 0; overflow: visible; border: 0; background: var(--navy-deep); color: #fff; }
+.video-dialog { width: min(92vw, 1000px); max-width: 1000px; max-height: 90vh; margin: auto; padding: 0; overflow: visible; border: 0; background: var(--navy-deep); color: #fff; }
+.video-dialog[open] { display: grid; place-items: center; }
 .video-dialog::backdrop { background: rgb(8 17 25 / 84%); backdrop-filter: blur(6px); }
-.video-dialog-inner { position: relative; padding: 48px 14px 14px; }
+.video-dialog-inner { position: relative; width: 100%; padding: 48px 14px 14px; }
 .video-dialog-close { position: absolute; top: 8px; right: 10px; display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid rgb(255 255 255 / 28%); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
-.video-dialog-inner video { display: block; width: 100%; max-height: 75vh; aspect-ratio: 16 / 9; background: #000; }
+.video-dialog-inner video { display: block; width: 100%; max-height: 75vh; margin-inline: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #000; }
 
 .projects-section { overflow: hidden; background: var(--navy-deep); color: #fff; }
 .section-heading-split { display: flex; align-items: end; justify-content: space-between; gap: 46px; margin-bottom: 38px; }
@@ -304,6 +317,11 @@ img { display: block; max-width: 100%; }
   .about-photo-badge small { font-size: 11px; }
   .about-copy h3 { font-size: 31px; }
   .about-copy > .body-copy { font-size: 13px; }
+  .purpose-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 40px; }
+  .purpose-card { padding: 24px; }
+  .purpose-card-label { margin-bottom: 20px; }
+  .purpose-card h3 { font-size: 30px; }
+  .purpose-card p { font-size: 13px; }
   .about-metrics { grid-template-columns: 1fr; gap: 4px; margin-top: 35px; padding-top: 17px; }
   .metric-card { gap: 17px; }
   .metric-card strong { min-width: 60px; font-size: 30px; }

@@ -3,6 +3,7 @@ import {
   ArrowUpRight,
   BadgeCheck,
   Boxes,
+  Compass,
   DraftingCompass,
   Factory,
   RadioTower,
@@ -74,6 +75,20 @@ export function AboutSection() {
             </p>
             <a className="text-link" href="#services">Conheça a nossa oferta <ArrowRight aria-hidden="true" size={17} /></a>
           </div>
+        </div>
+
+        <div className="purpose-grid" aria-label="Visão e missão da Construtel" data-gsap-stagger="true">
+          <article className="purpose-card purpose-card-vision" aria-labelledby="purpose-vision-title" data-gsap-item="true">
+            <div className="purpose-card-label"><span>01 · Direcção</span><Compass aria-hidden="true" size={21} /></div>
+            <h3 id="purpose-vision-title">Visão</h3>
+            <p>Ser uma empresa de referência no mercado angolano das telecomunicações, reconhecida pela excelência na prestação de serviços, inovação tecnológica, eficiência operacional, qualidade das suas soluções e compromisso com os clientes, contribuindo para o desenvolvimento das infra-estruturas de telecomunicações em Angola.</p>
+          </article>
+          <article className="purpose-card purpose-card-mission" aria-labelledby="purpose-mission-title" data-gsap-item="true">
+            <div className="purpose-card-label"><span>02 · Compromisso</span><RadioTower aria-hidden="true" size={21} /></div>
+            <h3 id="purpose-mission-title">Missão</h3>
+            <p>Prestar serviços especializados no sector das telecomunicações, através de soluções técnicas inovadoras, eficientes e de elevada qualidade, assegurando a manutenção, construção, instalação, gestão e optimização de infra-estruturas e equipamentos, com profissionais qualificados, responsabilidade, segurança e compromisso com a satisfação dos clientes.</p>
+            <p>A nossa missão é criar valor para os clientes, colaboradores e parceiros, garantindo resultados sustentáveis, crescimento empresarial e uma contribuição activa para o desenvolvimento tecnológico de Angola.</p>
+          </article>
         </div>
 
         <div className="about-metrics" aria-label="Construtel em resumo" data-gsap-stagger="true">

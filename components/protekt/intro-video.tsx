@@ -32,7 +32,7 @@ export function IntroVideoSection() {
             <p>Um olhar sobre as equipas, a engenharia e as soluções que mantêm Angola ligada.</p>
             <a className="text-link intro-video-link" href="#projects">Ver áreas de projecto <ArrowUpRight aria-hidden="true" size={16} /></a>
           </div>
-          <button className="intro-video-play" type="button" onClick={openVideo} aria-label="Reproduzir apresentação visual da Construtel">
+          <button className="intro-video-play" type="button" onClick={openVideo} aria-label="Reproduzir vídeo promocional da Construtel">
             <Play aria-hidden="true" size={23} fill="currentColor" />
           </button>
         </div>
@@ -41,7 +41,7 @@ export function IntroVideoSection() {
       <dialog
         className="video-dialog"
         ref={dialogRef}
-        aria-label="Apresentação visual da Construtel"
+        aria-label="Vídeo promocional da Construtel"
         onClick={(event) => {
           if (event.target === dialogRef.current) dialogRef.current?.close()
         }}
@@ -51,8 +51,8 @@ export function IntroVideoSection() {
           <button className="video-dialog-close" type="button" onClick={() => dialogRef.current?.close()} aria-label="Fechar apresentação">
             <X aria-hidden="true" size={21} />
           </button>
-          <video ref={videoRef} controls playsInline preload="none" poster="/protekt/construtel-hero.webp" aria-label="Apresentação visual de equipas e projectos de telecomunicações">
-            <source src="/protekt/construtel-showreel.mp4" type="video/mp4" />
+          <video ref={videoRef} controls playsInline preload="none" poster="/protekt/construtel-hero.webp" aria-label="Vídeo promocional da Construtel">
+            <source src="/protekt/construtel-promo.mp4" type="video/mp4" />
             O seu navegador não suporta a reprodução de vídeo.
           </video>
         </div>
